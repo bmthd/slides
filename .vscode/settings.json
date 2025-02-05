@@ -1,0 +1,7 @@
+{
+  "markdown-preview-enhanced.hideDefaultVSCodeMarkdownPreviewButtons": false,
+  "markdown.marp.html": "all",
+  "cSpell.words": [
+    "marp"
+  ],
+}
