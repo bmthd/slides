@@ -122,6 +122,9 @@ export const InquiryForm = () => {
 };
 ```
 
+とにかくやることが多い。
+UI構築、入力バリデーション、状態管理、送信バリデーション、送信処理
+
 ---
 
 ```tsx
@@ -265,4 +268,5 @@ graph TD
     D --> E[Data Processing Layer<br>データ処理]
     E --> F[Feedback Layer<br>フィードバック]
 ```
+
 ---
