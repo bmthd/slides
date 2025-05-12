@@ -5,19 +5,16 @@ paginate: false
 class: lead
 ---
 
-
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
 # コールバックchildrenでロジックの見通しをよくする
 
-<div class="flex justify-around">
-  <div style="--fw: 3;">
+<div class="flex justify-around items-center ">
+  <div>
 
   ```tsx
   export default function App() {
     return (
       <Toggle>
-        {(on, toggle) => (
+        {({on, toggle}) => (
           <div>
             <p>{on ? "ON" : "OFF"}</p>
             <button onClick={toggle}>Toggle</button>
@@ -27,23 +24,32 @@ class: lead
     )
   }
   ```
-
+  
   </div>
-  <div style="--fw: 3;">
+  <div>
 
   ```tsx
   const Toggle = ({
-    children,
+    children
   }: {
-    children: (on: boolean, toggle: () => void) => React.ReactNode
+    children: (props: {on: boolean, toggle: () => void}) => ReactNode
   }) => {
     const [on, setOn] = useState(false)
-    return <>{children(on, () => setOn(!on))}</>
+    return children({on, toggle: () => setOn(prev => !prev)})
   }
   ```
 
   </div>
 </div>
+
+<style scoped>
+  :root {
+    background-color: lightblue;
+  }
+  code {
+    font-size: 0.8em;
+  }
+</style>
 
 <!-- <style scoped>
 code {
