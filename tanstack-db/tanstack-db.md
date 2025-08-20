@@ -1,5 +1,15 @@
-marp: true theme: default
-TanStack DB
+---
+marp: true
+title: TanStack DB
+description: TanStack DB の紹介
+---
+
+<!-- スライド1 -->
+# TanStack DB
+
+---
+
+<!-- スライド2以降は既存内容をスライドごとに区切ってください -->
 TanStack DBとは
 TanStack QueryやRouter, Table, Formなどフロントエンドにおけるヘッドレス系ライブラリ群における新ライブラリ。
 
