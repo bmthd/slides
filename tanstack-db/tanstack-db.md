@@ -129,7 +129,10 @@ style: |
   }
 ---
 
-<h1 style="position: static; margin: 0 auto; max-width: fit-content; text-align: center;">TanStack DB ~状態管理の新しい考え方~</h1>
+<div style="text-align: center;">
+  <h1 style="position: static; margin: 0 auto; max-width: fit-content;">TanStack DB ~状態管理の新しい考え方~</h1>
+  <p style="margin-top: 30px; font-size: 1.2em; color: #2d3748;">じょうげん</p>
+</div>
 
 ---
 
