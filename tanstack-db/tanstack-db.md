@@ -2,6 +2,131 @@
 marp: true
 title: TanStack DB
 description: TanStack DB の紹介
+style: |
+  section {
+    background: #cbdcf7;
+    color: #2c3e50;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 60px 80px 80px 80px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  h1 {
+    color: #2d3748;
+    text-shadow: none;
+    border-bottom: 3px solid #2d3748;
+    padding-bottom: 10px;
+    position: absolute;
+    top: 60px;
+    left: 80px;
+    right: 80px;
+    margin: 0;
+  }
+  
+  h2 {
+    color: #2d3748;
+    border-left: 4px solid #2d3748;
+    padding-left: 15px;
+    position: absolute;
+    top: 60px;
+    left: 80px;
+    right: 80px;
+    margin: 0;
+  }
+  
+  section:has(h1) {
+    padding-top: 160px;
+  }
+  
+  section:has(h2) {
+    padding-top: 140px;
+  }
+  
+  ul {
+    line-height: 1.8;
+  }
+  
+  li {
+    margin-bottom: 8px;
+  }
+  
+  strong {
+    color: #1a365d;
+    font-weight: bold;
+  }
+  
+  code {
+    background: #1F1F1F;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #CCCCCC;
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+  }
+  
+  pre {
+    background: #1F1F1F;
+    border-radius: 8px;
+    padding: 20px;
+    border-left: 4px solid #2d3748;
+  }
+  
+  pre code {
+    background: transparent;
+    color: #CCCCCC;
+  }
+  
+  .language-ts .hljs-keyword,
+  .language-tsx .hljs-keyword {
+    color: #C586C0;
+  }
+  
+  .language-ts .hljs-string,
+  .language-tsx .hljs-string {
+    color: #CE9178;
+  }
+  
+  .language-ts .hljs-function,
+  .language-tsx .hljs-function {
+    color: #DCDCAA;
+  }
+  
+  .language-ts .hljs-variable,
+  .language-tsx .hljs-variable {
+    color: #9CDCFE;
+  }
+  
+  .language-ts .hljs-comment,
+  .language-tsx .hljs-comment {
+    color: #6A9955;
+  }
+  
+  .language-ts .hljs-type,
+  .language-tsx .hljs-type {
+    color: #4EC9B0;
+  }
+  
+  .language-ts .hljs-number,
+  .language-tsx .hljs-number {
+    color: #B5CEA8;
+  }
+  
+  .language-ts .hljs-title,
+  .language-tsx .hljs-title {
+    color: #DCDCAA;
+  }
+  
+  .language-ts .hljs-params,
+  .language-tsx .hljs-params {
+    color: #9CDCFE;
+  }
+  
+  blockquote {
+    border-left: 4px solid #2d3748;
+    padding-left: 15px;
+    font-style: italic;
+    opacity: 0.9;
+  }
 ---
 
 # TanStack DB ~状態管理の新しい考え方~
