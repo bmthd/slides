@@ -282,6 +282,35 @@ Supabase, IndexedDB, DuckDB WasmなどもAdapterを用意することで利用�
 
 ---
 
+# おまけ
+
+<div style="margin-top: 100px;">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+    <div>
+      <p style="margin-bottom: 30px; font-size: 1.1em; margin-top: 20px;">Claude Codeと一緒に既存のアプリケーションをTanStack DBに載せ替えしてみた</p>
+      <img src="image-2.png" alt="サービス画像" style="width: 100%; height: auto; max-height: 330px; object-fit: contain; border-radius: 8px;" />
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: flex-start; padding-top: 20px;">
+      <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+        <img src="image-1.png" alt="QRコード" style="width: 140px; height: auto; border-radius: 8px;" />
+        <div>
+          <h3 style="margin-bottom: 8px; color: #2d3748;">できたもの</h3>
+          <p style="font-size: 0.85em; color: #2d3748; line-height: 1.3;">https://tcg-tool.pages.dev/<br>draw-calc-db</p>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <img src="image.png" alt="GitHub PR" style="width: 140px; height: auto; border-radius: 8px;" />
+        <div>
+          <h3 style="margin-bottom: 8px; color: #2d3748;">ソースコード見たい方向け</h3>
+          <p style="font-size: 0.85em; color: #2d3748; line-height: 1.3;">https://github.com/bmthd/<br>tcg-tool/pull/3/files</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+---
+
 # まとめ
 
 * 「**フロントエンド中心のデータ設計**」を加速させる存在
