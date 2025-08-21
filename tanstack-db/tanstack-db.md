@@ -4,48 +4,143 @@ title: TanStack DB
 description: TanStack DB の紹介
 ---
 
-<!-- スライド1 -->
-# TanStack DB
+# TanStack DB ~状態管理の新しい考え方~
 
 ---
 
-<!-- スライド2以降は既存内容をスライドごとに区切ってください -->
-TanStack DBとは
-TanStack QueryやRouter, Table, Formなどフロントエンドにおけるヘッドレス系ライブラリ群における新ライブラリ。
+# TanStack DBとは？
 
-フロントエンド側に永続化層=DBを設け、コンポーネント側でそれをクエリする、クエリファーストなAPI。
+* TanStack Query / Router / Table / Form に続く **新ライブラリ**
+* フロントエンドに **永続化層(DB)** を設けてコンポーネントからクエリする
+* **クエリファーストなAPI**
+* React だけでなく **Vue / Svelte / Solid** など幅広いUIフレームワークをサポート
 
-TanStack シリーズといえば、Reactに限らずVue, Svelte, Solidなど様々なUIフレームワークをサポートしている点も魅力。
+---
 
-誰が支援している？
-Code Rabbit
+# 設計思想
 
-Electric
+**Client Side Querying**
+  → データ取得の主導権をフロント側へ
 
-Prisma
+---
 
-その設計思想とは
-Client Side Querying
+# Reactでの使い方の例
 
-使い方
-useLiveQuery
+```ts
+export const drawCalcCollection = createCollection(
+  localStorageCollectionOptions({
+    storageKey: "tcg-tool-draw-calculations",
+    id: "draw-calculations",
+    getKey: (item) => item.id,
+    schema: drawCalcSchema
+  }),
+);
+```
 
-TanStack DB 、なにが美味しい？
-永続化層を自由に差し替えが可能
+* Collectionという単位でデータの永続化を定義
+* ZodやValibotなどでランタイムバリデーションありの型定義可能
 
-バックエンド実装が不要になる可能性
-特定のSaaSに依存せずにフロントエンド側でデータがクエリ可能に。 RLSと組み合わせることで、必要なデータだけをフロントと同期する設計が可能に。
+---
 
-状態管理のベストプラクティスに変化があるかも！？
-オンメモリ、localStorageなどのアダプターが用意されており、バックエンド同期なしでの利用も可能です。
+```ts
+const { data } = useLiveQuery((q) =>
+  q
+    .from({ calculations: calculationsCollection })
+    .where(({ calculations }) => eq(calculations.id, calculationId)),
+);
+```
 
-従来のRESTAPIとの統合も可能です。
+* DrizzleのようなSQLライクなセレクター
+* 型安全なクエリビルダー
+* クエリで絞り込まれた箇所のみの部分的な**Subscribe**を実現
 
-スキーマを定義して、それを使用側で部分Subscribeが可能。
+---
 
-つまり、ZustandやJotaiで管理しているような状態があるとするなら、それらをスキーマとSQLライクなクエリのコレクションに置き換えが可能！
+## コンポーネントで使う
 
-永続化層が必要なかったとしてもデータの保管に使えそうです。 大幅に認知負荷を下げられる可能性
+```tsx
+const CalculationItem = ({ calculationId }: { calculationId: string }) => {
+  const { data } = useLiveQuery((q) =>
+    q.from({ calculations: calculationsCollection })
+      .where(({ calculations }) => eq(calculations.id, calculationId)),
+  );
+  const firstCalculation = data[0];
+  if (!firstCalculation) return <FallbackItem />;
+  return (
+    <Card.Root>
+      <Card.Header>
+        {firstCalculation.name}
+      </Card.Header>
+      <Card.Body>
+        {firstCalculation.description}
+      </Card.Body>
+    </Card.Root>
+  );
+}
+```
 
-まとめ
-TanStack DB はフロントエンドの状態管理だけでなく、バックエンド含めた設計手法にも影響を与えうる、非常にエキサイティングなライブラリです。
+---
+
+## 派生Collectionも可能
+
+```ts
+// 条件をあらかじめ指定
+export const drawCalcHistoryCollection = createLiveQueryCollection((q) =>
+  q.from({ calculations: drawCalcCollection })
+  .orderBy(({ calculations }) => calculations.updatedAt, "desc"),
+);
+
+// 引数ありの動的なCollection
+export const createDrawCalcByGameCollection = (gameTemplate: string) =>
+  createLiveQueryCollection((q) =>
+    q.from({ calculations: drawCalcCollection })
+    .where(({ calculations }) => eq(calculations.gameTemplate, gameTemplate))
+    .orderBy(({ calculations }) => calculations.updatedAt, "desc"),
+  );
+```
+
+---
+
+# TanStack DB、なにが美味しい？
+
+<!-- * 永続化層を **自由に差し替え可能**
+* オンメモリだけでなく、Electric SQL
+* RLS（Row Level Security）と組み合わせることで都度問い合わせすることなくクライアントが自由にデータを加工可能 -->
+
+---
+
+## 永続化層を **自由に差し替え可能**
+
+* localStorage
+* インメモリ
+* REST API
+* Electric SQL
+* TrailBase
+
+Supabase, IndexedDB, DuckDB WasmなどもAdapterを用意することで利用可能になるかも
+
+
+---
+
+# バックエンド実装が不要に？
+
+* **フロントエンド中心のデータ設計** が可能
+* RLS（Row Level Security）を組み合わせれば都度問い合わせの必要なし
+* 特定の データベースSaaS の実装に依存せずに済む
+
+---
+
+# 状態管理のベストプラクティスを変える？
+
+* Zustand / Jotai のような状態を
+  → **SQLライクなクエリ + スキーマ** に置き換え可能
+* 単なる状態管理にとどまらず、データの保管にも利用できる
+* **認知負荷を大幅に削減** できるかも！
+
+---
+
+# まとめ
+
+* 「**フロントエンド中心のデータ設計**」を加速させる存在
+* 全てのServer Stateの抽象化層になりうる
+* フロントエンドの状態管理だけでなくバックエンド設計にも影響を与える可能性大
