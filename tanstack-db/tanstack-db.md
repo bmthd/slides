@@ -129,16 +129,34 @@ style: |
   }
 ---
 
-# TanStack DB ~状態管理の新しい考え方~
+<h1 style="position: static; margin: 0 auto; max-width: fit-content; text-align: center;">TanStack DB ~状態管理の新しい考え方~</h1>
+
+---
+
+## TanStackファミリー
+
+<div style="display: flex; align-items: center; gap: 40px;">
+  <div style="flex: 1; text-align: center;">
+    <img src="tanstack-logo.png" alt="TanStack Logo" style="width: 240px; height: auto;" />
+  </div>
+  <div style="flex: 2;">
+    <ul>
+      <li><strong>TanStack Query</strong> - Server State Management</li>
+      <li><strong>TanStack Router</strong> - Type-Safe Routing</li>
+      <li><strong>TanStack Table</strong> - Headless Table Building</li>
+      <li><strong>TanStack Form</strong> - Headless Form Building</li>
+      <li><strong>TanStack DB</strong> - Client-Side Database ← <strong>NEW!</strong></li>
+    </ul>
+  </div>
+</div>
 
 ---
 
 # TanStack DBとは？
 
-* TanStack Query / Router / Table / Form に続く **新ライブラリ**
 * フロントエンドに **永続化層(DB)** を設けてコンポーネントからクエリする
 * **クエリファーストなAPI**
-* React だけでなく **Vue / Svelte / Solid** など幅広いUIフレームワークをサポート
+* React だけでなく **Vue / Svelte / Solid** など多数のUIフレームワークをサポート
 
 ---
 
@@ -197,7 +215,7 @@ const CalculationItem = ({ calculationId }: { calculationId: string }) => {
         {firstCalculation.name}
       </Card.Header>
       <Card.Body>
-        {firstCalculation.description}
+        {firstCalculation.result}
       </Card.Body>
     </Card.Root>
   );
@@ -226,7 +244,7 @@ export const createDrawCalcByGameCollection = (gameTemplate: string) =>
 
 ---
 
-# TanStack DB、なにが美味しい？
+<h1 style="position: static; margin: 0 auto; max-width: fit-content; text-align: center;">TanStack DB、なにが美味しい？</h1>
 
 <!-- * 永続化層を **自由に差し替え可能**
 * オンメモリだけでなく、Electric SQL
