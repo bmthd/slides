@@ -157,9 +157,12 @@ style: |
 TypeScript コンパニオンオブジェクト活用術
 
 <div style="position: absolute; bottom: 28px; left: 36px; display: flex; gap: 16px; align-items: center;">
-  <div style="position: relative; background: white; border-radius: 12px; padding: 8px 16px; display: inline-flex; align-items: center;">
+  <div style="position: relative; background: white; border-radius: 12px; padding: 8px 16px; display: inline-flex; align-items: center; overflow: hidden;">
     <img src="logo-tskaigi.svg" style="height: 40px;" />
-    <div style="position: absolute; inset: 0; border-radius: 12px; background: linear-gradient(to bottom right, transparent calc(50% - 3px), #dd2222 calc(50% - 3px), #dd2222 calc(50% + 3px), transparent calc(50% + 3px)), linear-gradient(to bottom left, transparent calc(50% - 3px), #dd2222 calc(50% - 3px), #dd2222 calc(50% + 3px), transparent calc(50% + 3px));"></div>
+    <svg style="position: absolute; inset: 0; width: 100%; height: 100%;" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="8" y1="8" x2="92" y2="92" stroke="#dd2222" stroke-width="8" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+      <line x1="92" y1="8" x2="8" y2="92" stroke="#dd2222" stroke-width="8" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    </svg>
   </div>
   <div style="display: flex; align-items: center; gap: 12px;">
     <img src="logo-react-tokyo.png" style="width: 72px; height: 72px; border-radius: 50%;" />
@@ -286,13 +289,13 @@ const FruitsList = (props: List.Root.Props) => {
 };
 ```
 
-アプリ独自の薄いカスタマイズを乗せた**「設定済みの部品」**を手軽に作れる
+アプリ独自の薄いカスタマイズを乗せた **「設定済みの部品」** を手軽に作れる
 
 ---
 
 ## ユースケース② JSX 駆動（細かくカスタマイズ）
 
-`List.Item` を**コンポーネント（値）**として直接配置する
+`List.Item` を **コンポーネント（値）** として直接配置する
 
 ```tsx
 const FruitsList = () => {
